@@ -1,0 +1,23 @@
+import type { NextConfig } from "next";
+
+const isGithubActions = process.env.GITHUB_ACTIONS || false;
+let assetPrefix = '';
+let basePath = '';
+
+if (isGithubActions) {
+  // e.g. "badmaash10/jsr_website_demo" -> "jsr_website_demo"
+  const repo = process.env.GITHUB_REPOSITORY?.replace(/.*?\//, '') ?? '';
+  assetPrefix = `/${repo}/`;
+  basePath = `/${repo}`;
+}
+
+const nextConfig: NextConfig = {
+  output: "export",
+  basePath: basePath,
+  assetPrefix: assetPrefix,
+  images: {
+    unoptimized: true,
+  },
+};
+
+export default nextConfig;
