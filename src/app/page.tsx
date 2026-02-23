@@ -1,7 +1,11 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 import Image from 'next/image';
+import Link from 'next/link';
 import Hyperspeed from '@/components/Hyperspeed';
+
+import InteractiveGridImage from '@/components/InteractiveGridImage';
+
 // Using environment variable for basePath so it resolves correctly in GitHub Actions
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
@@ -49,6 +53,7 @@ export default function Home() {
 
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
+          // Native fallback anchor scroll until we upgrade Lenis interception or just let Lenis grab auto-hashes
           const yOffset = -70;
           const y = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
@@ -66,12 +71,12 @@ export default function Home() {
   }, []);
 
   const partners = [
-    { name: 'TP Link', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/07/TP-Link_Logo.svg' },
-    { name: 'Fortinet', logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Fortinet_logo.svg' },
-    { name: 'Juniper', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Juniper_Networks_logo.svg' },
-    { name: 'Palo Alto', logo: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Palo_Alto_Networks_logo.svg' },
-    { name: 'Checkpoint', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Check_Point_logo.svg' },
-    { name: 'Asus', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg' },
+    { name: 'TP Link', logo: `${basePath}/tp_link_logo.png` },
+    { name: 'Fortinet', logo: `${basePath}/fortinet_logo.svg` },
+    { name: 'Juniper', logo: `${basePath}/Juniper_Networks_logo.png` },
+    { name: 'Palo Alto', logo: `${basePath}/palo_alto_logo.png` },
+    { name: 'Checkpoint', logo: `${basePath}/checkpoint_logo.svg` },
+    { name: 'Asus', logo: `${basePath}/asus.svg` },
   ];
 
   // Memoize the Hyperspeed config so it doesn't recreate WebGL scenes on render
@@ -169,9 +174,14 @@ export default function Home() {
               <a href="#contact" className="btn btn-secondary">Get a Consultation</a>
             </div>
           </div>
-          <div className="hero-image-placeholder relative z-10">
+          <div className="hero-image-placeholder relative z-10 w-full h-[300px] md:h-[400px] lg:h-[500px]">
             <div className="abstract-shape"></div>
-            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800" alt="Server Room Infrastructure Overview" style={{ position: 'relative', zIndex: 2 }} />
+            <div style={{ position: 'relative', zIndex: 2, width: '100%', height: '100%', padding: '10px' }}>
+              <InteractiveGridImage
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800"
+                alt="Server Room Infrastructure Overview"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -185,12 +195,13 @@ export default function Home() {
           </div>
           <div className="services-grid">
 
-            <div className="service-card flip-card reveal">
+            <Link href="/networking" className="service-card flip-card reveal block cursor-pointer">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   <div className="service-icon"><i className="fas fa-network-wired"></i></div>
                   <h3>Networking</h3>
                   <p className="front-subtext">Routing, Switching & Wireless</p>
+                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
                 </div>
                 <div className="flip-card-back">
                   <h3>Networking Integration</h3>
@@ -200,16 +211,20 @@ export default function Home() {
                     <li><i className="fas fa-check"></i> Wireless Controllers</li>
                     <li><i className="fas fa-check"></i> SD-WAN Integration</li>
                   </ul>
+                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
+                    Learn more <i className="fas fa-arrow-right"></i>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="service-card flip-card reveal reveal-delay-1">
+            <Link href="/security" className="service-card flip-card reveal reveal-delay-1 block cursor-pointer">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   <div className="service-icon"><i className="fas fa-shield-alt"></i></div>
                   <h3>Security</h3>
                   <p className="front-subtext">Firewalls & Cyber Defense</p>
+                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
                 </div>
                 <div className="flip-card-back">
                   <h3>Security Services</h3>
@@ -219,16 +234,20 @@ export default function Home() {
                     <li><i className="fas fa-check"></i> Layer 7 Protection</li>
                     <li><i className="fas fa-check"></i> Endpoint Security</li>
                   </ul>
+                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
+                    Learn more <i className="fas fa-arrow-right"></i>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="service-card flip-card reveal reveal-delay-2">
+            <Link href="/compute-storage" className="service-card flip-card reveal reveal-delay-2 block cursor-pointer">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   <div className="service-icon"><i className="fas fa-server"></i></div>
                   <h3>Compute & Storage</h3>
                   <p className="front-subtext">Servers & Data Management</p>
+                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
                 </div>
                 <div className="flip-card-back">
                   <h3>Compute Integration</h3>
@@ -238,28 +257,35 @@ export default function Home() {
                     <li><i className="fas fa-check"></i> SAN/NAS Solutions</li>
                     <li><i className="fas fa-check"></i> Virtualization</li>
                   </ul>
+                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
+                    Learn more <i className="fas fa-arrow-right"></i>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="service-card flip-card reveal reveal-delay-3">
+            <Link href="/data-center" className="service-card flip-card reveal reveal-delay-3 block cursor-pointer">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
                   <div className="service-icon"><i className="fas fa-database"></i></div>
                   <h3>Data Center</h3>
-                  <p className="front-subtext">Infrastructure & Facilities</p>
+                  <p className="front-subtext">Infrastructure & Hosting</p>
+                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
                 </div>
                 <div className="flip-card-back">
-                  <h3>Data Center Solutions</h3>
-                  <p>State-of-the-art implementation of power management, cooling, and structured cabling setups.</p>
+                  <h3>Data Center Build</h3>
+                  <p>Turnkey datacenter builds engineered for massive scale, elite security, and ultimate resiliency.</p>
                   <ul className="service-features">
-                    <li><i className="fas fa-check"></i> IT Racks & Power</li>
+                    <li><i className="fas fa-check"></i> Colocation Systems</li>
                     <li><i className="fas fa-check"></i> Disaster Recovery</li>
-                    <li><i className="fas fa-check"></i> Infrastructure Mgt</li>
+                    <li><i className="fas fa-check"></i> Cloud Migration</li>
                   </ul>
+                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
+                    Learn more <i className="fas fa-arrow-right"></i>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
 
           </div>
         </div>

@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JSR Netsol Website
 
-## Getting Started
+**Live Website:** [https://badmaash10.github.io/jsr_website_demo](https://badmaash10.github.io/jsr_website_demo)
+
+## Local Development
 
 First, run the development server:
 
@@ -14,23 +16,30 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying `src/app/page.tsx` or other components. The page auto-updates as you edit the file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment Instructions
 
-## Learn More
+This website is configured to deploy automatically via **GitHub Actions** to GitHub Pages. **You do not need to manually trigger anything in the GitHub Actions tab or run the build command yourself.**
 
-To learn more about Next.js, take a look at the following resources:
+Deployment is fully automated whenever you push your code to the `main` branch.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### How to push and deploy:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run the following standard Git commands in your terminal to deploy your latest changes:
 
-## Deploy on Vercel
+```bash
+# 1. Stage all your changes
+git add .
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 2. Commit the changes with a descriptive message
+git commit -m "Update homepage"
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 3. Push the changes to the main branch on GitHub
+git push origin main
+```
+
+**What happens next?**
+Once the `git push` command finishes, GitHub automatically starts a workflow (as defined in `.github/workflows/deploy.yml`). It will build the Next.js project and deploy it to the live URL. It usually takes 1-2 minutes for the changes to reflect on [https://badmaash10.github.io/jsr\_website\_demo](https://badmaash10.github.io/jsr_website_demo).
