@@ -11,28 +11,28 @@ const services = [
         title: "Next-Generation Firewalls",
         body: "Perimeter firewalls are table stakes. We deploy and tune NGFWs from Palo Alto, Fortinet, and Checkpoint that go far beyond packet filtering — enforcing application-aware policies, decrypting SSL traffic for inspection, and correlating threat intelligence in real time. Every rule is documented and reviewed quarterly so your security posture stays tight as your environment evolves.",
         tags: ["Palo Alto NGFW", "Fortinet FortiGate", "Check Point", "SSL/TLS Inspection"],
-        image: "Next_Generation_Firewalls.png"
+        image: "Next_Generation_Firewalls.webp"
     },
     {
         icon: "fa-solid fa-layer-group",
         title: "Layer 7 & Web Application Defence",
         body: "Attackers have moved up the stack. We implement Web Application Firewalls (WAF) and Layer 7 inspection to protect your public-facing applications from OWASP Top 10 vulnerabilities, bot traffic, and zero-day exploits — without impacting legitimate user performance. Our partnership with Prophaze brings AI-driven anomaly detection to your edge.",
         tags: ["WAF Deployment", "Bot Mitigation", "Prophaze AI Layer", "OWASP Top 10"],
-        image: "Layer_7_& Web_Application_Defence.png"
+        image: "Layer_7_& Web_Application_Defence.webp"
     },
     {
         icon: "fa-solid fa-laptop-code",
         title: "Endpoint & Identity Security",
         body: "A secured perimeter means nothing if an endpoint is compromised. We help organisations deploy EDR solutions, enforce least-privilege access policies, and segment their networks so a breach stays contained. From MFA rollout to zero-trust network access (ZTNA), we design identity-aware architectures that match how your teams actually work.",
         tags: ["EDR / XDR Solutions", "Zero Trust Architecture", "MFA & SSO", "Network Segmentation"],
-        image: "Endpoint_&_Identity_Security.png"
+        image: "Endpoint_&_Identity_Security.webp"
     },
     {
         icon: "fa-solid fa-magnifying-glass-chart",
         title: "Security Audits & Compliance",
         body: "Whether you need a one-time posture review or are working toward ISO 27001 or PCI-DSS compliance, our team conducts structured security assessments, produces prioritised remediation roadmaps, and helps you close gaps methodically. We translate technical findings into business-level risk so leadership can make informed decisions.",
         tags: ["Vulnerability Assessment", "ISO 27001 Readiness", "PCI-DSS", "Remediation Roadmap"],
-        image: "Security_Audits_&_Compliance.png"
+        image: "Security_Audits_&_Compliance.webp"
     },
 ];
 

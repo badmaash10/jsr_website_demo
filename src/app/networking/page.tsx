@@ -11,21 +11,21 @@ const services = [
         title: "Network Architecture & Design",
         body: "Before a single cable is run, we think deeply. Our engineers sit with your stakeholders to map out traffic patterns, redundancy requirements, and three-year growth projections — then produce a detailed blueprint that your team can own and evolve. We design for today's throughput and tomorrow's scale, using industry-standard tools to model every hop, VLAN, and failover path.",
         tags: ["Campus LAN/WAN", "SD-WAN Ready", "Multi-site Topology", "Traffic Engineering"],
-        image: "Network_Architecture_& _Design.png"
+        image: "Network_Architecture_& _Design.webp"
     },
     {
         icon: "fa-solid fa-plug-circle-check",
         title: "Procurement & Integration",
         body: "We are vendor-neutral by principle. Once a design is locked, we source the right hardware at competitive pricing — from access-layer switches to core routers — and handle every aspect of staging, configuration, and rack-and-stack deployment. Our structured rollout process minimises downtime and eliminates the config drift that plagues ad-hoc rollouts.",
         tags: ["Cisco / Juniper / HP", "Zero-touch Provisioning", "Config Management", "24-hr Staging Lab"],
-        image: "Procurement_&_Integration.png"
+        image: "Procurement_&_Integration.webp"
     },
     {
         icon: "fa-solid fa-shield-halved",
         title: "AMC & Proactive Maintenance",
         body: "Networks degrade silently. Firmware falls behind, spanning-tree topologies shift, and link utilisation creeps toward saturation — all before anyone files a ticket. Our Annual Maintenance Contracts include scheduled health audits, proactive firmware management, and a guaranteed SLA response window so you're never scrambling during a critical outage.",
         tags: ["4-hr Hardware Replacement SLA", "Quarterly Health Reports", "Firmware Lifecycle Mgmt", "NOC Escalation Path"],
-        image: "AMC_&_Proactive_Maintenance.png"
+        image: "AMC_&_Proactive_Maintenance.webp"
     },
 ];
 

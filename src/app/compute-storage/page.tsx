@@ -11,28 +11,28 @@ const services = [
         title: "Server Infrastructure & Compute",
         body: "Whether you're running virtualised workloads, bare-metal databases, or AI inference jobs, the right compute platform makes all the difference. We size and deploy rack and blade servers from Cisco UCS, HPE, and Dell to match your specific performance envelope — then configure hypervisor clusters, resource pools, and HA policies so your workloads run without interruption, even during hardware faults.",
         tags: ["Cisco UCS / HPE / Dell", "VMware vSphere", "Microsoft Hyper-V", "High Availability Clustering"],
-        image: "Server_Infrastructure_&_Compute.png"
+        image: "Server_Infrastructure_&_Compute.webp"
     },
     {
         icon: "fa-solid fa-hard-drive",
         title: "Storage Architecture: SAN & NAS",
         body: "Storage is where poor planning shows up as slow applications and failed backups. We design and deploy SAN (Storage Area Network) and NAS (Network-Attached Storage) environments that match your I/O profile — from high-IOPS all-flash arrays for databases to cost-efficient hybrid tiers for archival and backup. Replication, snapshots, and DR are built in, not bolted on.",
         tags: ["All-Flash & Hybrid Arrays", "SAN FC / iSCSI", "NAS Protocols (NFS/SMB)", "Snapshot & Replication"],
-        image: "Storage_Architecture_SAN_&_NAS.png"
+        image: "Storage_Architecture_SAN_&_NAS.webp"
     },
     {
         icon: "fa-solid fa-cubes",
         title: "Virtualisation & HCI",
         body: "Hyperconverged Infrastructure (HCI) collapses compute, storage, and networking into a single, software-defined stack that scales by adding nodes — not racking up silos. We implement HCI platforms that dramatically simplify operations and let your IT team focus on business outcomes instead of infrastructure maintenance.",
         tags: ["VMware vSAN", "Nutanix AHV", "Scale-out Architecture", "Single-pane Management"],
-        image: "Virtualisation_&_HCI.png"
+        image: "Virtualisation_&_HCI.webp"
     },
     {
         icon: "fa-solid fa-cloud-arrow-up",
         title: "Backup, DR & Cloud Integration",
         body: "Hardware fails. Ransomware encrypts. Floods happen. A robust compute strategy includes a tested recovery plan — not just a backup job that runs at midnight. We implement backup solutions with air-gapped copies, automate failover runbooks, and can extend your on-premises environment to AWS, Azure, or Google Cloud for burst compute and geographic DR.",
         tags: ["Veeam / Commvault", "Air-Gapped Backups", "RTO / RPO Planning", "Hybrid Cloud Burst"],
-        image: "Backup_DR_&_Cloud_Integration.png"
+        image: "Backup_DR_&_Cloud_Integration.webp"
     },
 ];
 

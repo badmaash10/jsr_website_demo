@@ -11,28 +11,28 @@ const services = [
         title: "DC Design & Feasibility",
         body: "Every great data center starts with a great brief. We work alongside your facilities and IT teams to define capacity requirements, power density targets, and tier-level objectives — then translate those into a cohesive physical and logical design. From raised-floor layouts to hot/cold aisle containment strategies, every decision is made with total cost of ownership front of mind.",
         tags: ["Tier II / III Design", "Power & Cooling Modelling", "Space Planning", "TCO Analysis"],
-        image: "DC_Design_&_Feasibility.png"
+        image: "DC_Design_&_Feasibility.webp"
     },
     {
         icon: "fa-solid fa-bolt",
         title: "Power & Cooling Infrastructure",
         body: "An unstable power supply or an overheating rack can bring down your entire operation. We specify and integrate enterprise-grade UPS systems, PDUs, and generators alongside precision cooling solutions — in-row, under-floor, or rear-door — to ensure that your thermal envelope stays in spec even at peak load and that power never becomes a single point of failure.",
         tags: ["UPS & Generator Integration", "N+1 / 2N Redundancy", "In-row Cooling", "Energy Efficiency (PUE)"],
-        image: "Power_&_Cooling_Infrastructure.png"
+        image: "Power_&_Cooling_Infrastructure.webp"
     },
     {
         icon: "fa-solid fa-server",
         title: "Structured Cabling & Rack Build",
         body: "A messy data center is an expensive one — troubleshooting is slower, airflow is impaired, and change management breaks down. We deliver structured cabling systems built to TIA-942 standards, with every cable dressed, labelled, and documented. Rack builds follow vendor-specified best practices, and full asset inventories are handed over at project close.",
         tags: ["TIA-942 Compliance", "Fibre & Copper Cabling", "Cable Management", "Asset Documentation"],
-        image: "Structured_Cabling_&_Rack_Build.png"
+        image: "Structured_Cabling_&_Rack_Build.webp"
     },
     {
         icon: "fa-solid fa-shield-halved",
         title: "Physical Security & Monitoring",
         body: "Digital security means little if someone can walk up to your servers. We integrate physical access control, CCTV surveillance, and environmental monitoring (temperature, humidity, water leakage) into a unified management platform. Real-time alerting ensures your operations team knows about a problem the moment it arises — not after the damage is done.",
         tags: ["Access Control & Biometrics", "CCTV Integration", "DCIM Platforms", "24/7 Environmental Alerts"],
-        image: "Physical_Security_&_Monitoring.png"
+        image: "Physical_Security_&_Monitoring.webp"
     },
 ];
 
