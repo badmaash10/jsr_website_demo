@@ -5,21 +5,49 @@ import { useEffect, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
+const services = [
+    {
+        icon: "fa-solid fa-microchip",
+        title: "Server Infrastructure & Compute",
+        body: "Whether you're running virtualised workloads, bare-metal databases, or AI inference jobs, the right compute platform makes all the difference. We size and deploy rack and blade servers from Cisco UCS, HPE, and Dell to match your specific performance envelope — then configure hypervisor clusters, resource pools, and HA policies so your workloads run without interruption, even during hardware faults.",
+        tags: ["Cisco UCS / HPE / Dell", "VMware vSphere", "Microsoft Hyper-V", "High Availability Clustering"],
+        image: "Server_Infrastructure_&_Compute.png"
+    },
+    {
+        icon: "fa-solid fa-hard-drive",
+        title: "Storage Architecture: SAN & NAS",
+        body: "Storage is where poor planning shows up as slow applications and failed backups. We design and deploy SAN (Storage Area Network) and NAS (Network-Attached Storage) environments that match your I/O profile — from high-IOPS all-flash arrays for databases to cost-efficient hybrid tiers for archival and backup. Replication, snapshots, and DR are built in, not bolted on.",
+        tags: ["All-Flash & Hybrid Arrays", "SAN FC / iSCSI", "NAS Protocols (NFS/SMB)", "Snapshot & Replication"],
+        image: "Storage_Architecture_SAN_&_NAS.png"
+    },
+    {
+        icon: "fa-solid fa-cubes",
+        title: "Virtualisation & HCI",
+        body: "Hyperconverged Infrastructure (HCI) collapses compute, storage, and networking into a single, software-defined stack that scales by adding nodes — not racking up silos. We implement HCI platforms that dramatically simplify operations and let your IT team focus on business outcomes instead of infrastructure maintenance.",
+        tags: ["VMware vSAN", "Nutanix AHV", "Scale-out Architecture", "Single-pane Management"],
+        image: "Virtualisation_&_HCI.png"
+    },
+    {
+        icon: "fa-solid fa-cloud-arrow-up",
+        title: "Backup, DR & Cloud Integration",
+        body: "Hardware fails. Ransomware encrypts. Floods happen. A robust compute strategy includes a tested recovery plan — not just a backup job that runs at midnight. We implement backup solutions with air-gapped copies, automate failover runbooks, and can extend your on-premises environment to AWS, Azure, or Google Cloud for burst compute and geographic DR.",
+        tags: ["Veeam / Commvault", "Air-Gapped Backups", "RTO / RPO Planning", "Hybrid Cloud Burst"],
+        image: "Backup_DR_&_Cloud_Integration.png"
+    },
+];
+
 export default function ComputeStoragePage() {
     const [navShadow, setNavShadow] = useState(false);
 
     useEffect(() => {
-        // Navbar shadow on scroll
-        const handleScroll = () => {
-            setNavShadow(window.scrollY > 50);
-        };
+        const handleScroll = () => setNavShadow(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <main className="bg-white min-h-screen text-slate-800">
-            <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`} id="navbar">
+            <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`}>
                 <div className="container nav-container">
                     <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <img src={`${basePath}/JSR_LOGO.png`} alt="JSR Logo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
@@ -33,38 +61,59 @@ export default function ComputeStoragePage() {
                 </div>
             </header>
 
-            {/* Hero Section for Compute */}
-            <section className="pt-40 pb-20 bg-slate-900 text-white relative overflow-hidden">
+            {/* Hero */}
+            <section className="pt-40 pb-24 bg-slate-900 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700 via-slate-900 to-slate-900"></div>
                 <div className="container relative z-10 text-center">
-                    <span className="badge mb-6 inline-block">High Performance Infrastructure</span>
-                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">Compute & Storage</h1>
+                    <span className="badge mb-6 inline-block">High-Performance Infrastructure</span>
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                        Compute Power<br />
+                        <span className="text-blue-400">At Scale.</span>
+                    </h1>
                     <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                        Robust server architectures and scalable storage deployments for your critical enterprise workloads.
+                        Your applications are only as fast as the infrastructure beneath them. We build compute and storage environments engineered for performance, resilience, and long-term operational simplicity.
                     </p>
+                    <Link href="/#contact" className="btn btn-primary inline-block mt-10 px-8 py-4 text-lg">Plan Your Infrastructure</Link>
                 </div>
             </section>
 
-            {/* Services Content Section */}
-            <section className="py-24">
-                <div className="container">
-                    <div className="bg-slate-50 border border-slate-200 p-12 rounded-3xl shadow-sm max-w-4xl mx-auto text-center">
-                        <div className="w-20 h-20 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-4xl mb-8 mx-auto">
-                            <i className="fa-solid fa-server"></i>
-                        </div>
-                        <h3 className="text-3xl font-bold text-slate-900 mb-6">Powering Intelligence</h3>
-                        <p className="text-lg text-slate-600 leading-relaxed mb-6">
-                            Compute is the powerful engine that processes, analyses, and extracts intelligence from your raw data, instantly harnessing the secure, accessible foundation provided by data storage.
-                        </p>
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            We design and implement highly scalable SAN and NAS environments, coupled with cutting-edge blade servers and virtualization technology, to ensure your applications run with zero bottlenecks and maximum redundancy.
-                        </p>
+            {/* Services */}
+            <section className="py-24 bg-slate-50">
+                <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="section-header mb-24 text-center">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Infrastructure That Performs</h2>
+                        <p className="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">Server, storage, and virtualisation solutions built for the demands of modern enterprise workloads.</p>
                     </div>
-
-                    <div className="mt-20 text-center">
-                        <Link href="/#contact" className="btn btn-primary px-8 py-4 text-lg">
-                            Scale Your Compute Power
-                        </Link>
+                    <div className="space-y-32">
+                        {services.map((s, idx) => (
+                            <div key={s.title} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                                <div className={`w-full lg:w-1/2 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                                    <div className="relative group rounded-3xl overflow-hidden shadow-2xl ring-1 ring-slate-900/5 transition-transform duration-500 hover:scale-[1.02] bg-white">
+                                        <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                                        <img
+                                            src={`${basePath}/services_images/${s.image}`}
+                                            alt={s.title}
+                                            className="w-full h-auto aspect-[4/3] object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div className={`w-full lg:w-1/2 ${idx % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                                    <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-sm">
+                                        <i className={s.icon}></i>
+                                    </div>
+                                    <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">{s.title}</h3>
+                                    <p className="text-lg text-slate-600 leading-relaxed mb-8">{s.body}</p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {s.tags.map(tag => (
+                                            <span key={tag} className="text-sm bg-white text-slate-700 border border-slate-200 px-4 py-2 rounded-full font-semibold shadow-sm transition-colors hover:bg-slate-50 cursor-default">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-32 text-center">
+                        <Link href="/#contact" className="btn btn-primary px-10 py-5 text-xl font-semibold shadow-xl shadow-blue-500/20">Scale Your Infrastructure</Link>
                     </div>
                 </div>
             </section>

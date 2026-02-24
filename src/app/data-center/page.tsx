@@ -5,21 +5,49 @@ import { useEffect, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
+const services = [
+    {
+        icon: "fa-solid fa-diagram-project",
+        title: "DC Design & Feasibility",
+        body: "Every great data center starts with a great brief. We work alongside your facilities and IT teams to define capacity requirements, power density targets, and tier-level objectives — then translate those into a cohesive physical and logical design. From raised-floor layouts to hot/cold aisle containment strategies, every decision is made with total cost of ownership front of mind.",
+        tags: ["Tier II / III Design", "Power & Cooling Modelling", "Space Planning", "TCO Analysis"],
+        image: "DC_Design_&_Feasibility.png"
+    },
+    {
+        icon: "fa-solid fa-bolt",
+        title: "Power & Cooling Infrastructure",
+        body: "An unstable power supply or an overheating rack can bring down your entire operation. We specify and integrate enterprise-grade UPS systems, PDUs, and generators alongside precision cooling solutions — in-row, under-floor, or rear-door — to ensure that your thermal envelope stays in spec even at peak load and that power never becomes a single point of failure.",
+        tags: ["UPS & Generator Integration", "N+1 / 2N Redundancy", "In-row Cooling", "Energy Efficiency (PUE)"],
+        image: "Power_&_Cooling_Infrastructure.png"
+    },
+    {
+        icon: "fa-solid fa-server",
+        title: "Structured Cabling & Rack Build",
+        body: "A messy data center is an expensive one — troubleshooting is slower, airflow is impaired, and change management breaks down. We deliver structured cabling systems built to TIA-942 standards, with every cable dressed, labelled, and documented. Rack builds follow vendor-specified best practices, and full asset inventories are handed over at project close.",
+        tags: ["TIA-942 Compliance", "Fibre & Copper Cabling", "Cable Management", "Asset Documentation"],
+        image: "Structured_Cabling_&_Rack_Build.png"
+    },
+    {
+        icon: "fa-solid fa-shield-halved",
+        title: "Physical Security & Monitoring",
+        body: "Digital security means little if someone can walk up to your servers. We integrate physical access control, CCTV surveillance, and environmental monitoring (temperature, humidity, water leakage) into a unified management platform. Real-time alerting ensures your operations team knows about a problem the moment it arises — not after the damage is done.",
+        tags: ["Access Control & Biometrics", "CCTV Integration", "DCIM Platforms", "24/7 Environmental Alerts"],
+        image: "Physical_Security_&_Monitoring.png"
+    },
+];
+
 export default function DataCenterPage() {
     const [navShadow, setNavShadow] = useState(false);
 
     useEffect(() => {
-        // Navbar shadow on scroll
-        const handleScroll = () => {
-            setNavShadow(window.scrollY > 50);
-        };
+        const handleScroll = () => setNavShadow(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <main className="bg-white min-h-screen text-slate-800">
-            <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`} id="navbar">
+            <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`}>
                 <div className="container nav-container">
                     <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <img src={`${basePath}/JSR_LOGO.png`} alt="JSR Logo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
@@ -33,38 +61,59 @@ export default function DataCenterPage() {
                 </div>
             </header>
 
-            {/* Hero Section for Data Center */}
-            <section className="pt-40 pb-20 bg-slate-900 text-white relative overflow-hidden">
+            {/* Hero */}
+            <section className="pt-40 pb-24 bg-slate-900 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700 via-slate-900 to-slate-900"></div>
                 <div className="container relative z-10 text-center">
-                    <span className="badge mb-6 inline-block">Architecture & Deployment</span>
-                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">Data Center Solutions</h1>
+                    <span className="badge mb-6 inline-block">Turnkey DC Deployment</span>
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                        The Fortified Core<br />
+                        <span className="text-blue-400">Of Your Enterprise.</span>
+                    </h1>
                     <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                        Turnkey datacenter builds engineered for massive scale, elite security, and ultimate resiliency.
+                        Your data center isn't just infrastructure — it's the beating heart of every application, transaction, and customer interaction your business depends on. We build it right the first time.
                     </p>
+                    <Link href="/#contact" className="btn btn-primary inline-block mt-10 px-8 py-4 text-lg">Start Your DC Project</Link>
                 </div>
             </section>
 
-            {/* Services Content Section */}
-            <section className="py-24">
-                <div className="container">
-                    <div className="bg-slate-50 border border-slate-200 p-12 rounded-3xl shadow-sm max-w-4xl mx-auto text-center">
-                        <div className="w-20 h-20 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-4xl mb-8 mx-auto">
-                            <i className="fa-solid fa-server"></i> {/* Using server as generic since generic db icon isn't as imposing */}
-                        </div>
-                        <h3 className="text-3xl font-bold text-slate-900 mb-6">We Build Datacenters</h3>
-                        <p className="text-lg text-slate-600 leading-relaxed mb-6">
-                            For your Enterprise, the Data Center isn't just a building; it is the fortified, resilient core that guarantees 24/7 access to the data and applications driving your competitive edge and customer experience.
-                        </p>
-                        <p className="text-lg text-slate-600 leading-relaxed">
-                            JSR Netsol handles the complete lifecycle of Data Center deployment, from initial spacial and thermal design to rack installation, cooling, and power redundancy planning.
-                        </p>
+            {/* Services */}
+            <section className="py-24 bg-slate-50">
+                <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="section-header mb-24 text-center">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">What We Build</h2>
+                        <p className="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">Full-lifecycle data center delivery — from site survey to live handover.</p>
                     </div>
-
-                    <div className="mt-20 text-center">
-                        <Link href="/#contact" className="btn btn-primary px-8 py-4 text-lg">
-                            Start the Conversation
-                        </Link>
+                    <div className="space-y-32">
+                        {services.map((s, idx) => (
+                            <div key={s.title} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                                <div className={`w-full lg:w-1/2 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                                    <div className="relative group rounded-3xl overflow-hidden shadow-2xl ring-1 ring-slate-900/5 transition-transform duration-500 hover:scale-[1.02] bg-white">
+                                        <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                                        <img
+                                            src={`${basePath}/services_images/${s.image}`}
+                                            alt={s.title}
+                                            className="w-full h-auto aspect-[4/3] object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div className={`w-full lg:w-1/2 ${idx % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                                    <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-sm">
+                                        <i className={s.icon}></i>
+                                    </div>
+                                    <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">{s.title}</h3>
+                                    <p className="text-lg text-slate-600 leading-relaxed mb-8">{s.body}</p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {s.tags.map(tag => (
+                                            <span key={tag} className="text-sm bg-white text-slate-700 border border-slate-200 px-4 py-2 rounded-full font-semibold shadow-sm transition-colors hover:bg-slate-50 cursor-default">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-32 text-center">
+                        <Link href="/#contact" className="btn btn-primary px-10 py-5 text-xl font-semibold shadow-xl shadow-blue-500/20">Discuss Your Data Center</Link>
                     </div>
                 </div>
             </section>

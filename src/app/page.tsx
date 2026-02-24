@@ -325,24 +325,23 @@ export default function Home() {
       {/* Contact Section */}
       <section className="contact" id="contact">
         <div className="container contact-container">
-          <div className="contact-info">
-            <h2>Ready to Upgrade Your Network?</h2>
-            <p>Contact our specialists today to discuss how we can secure and optimize your IT infrastructure.</p>
-
-            <div className="info-item">
-              <i className="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Headquarters</h4>
-                <p>Modi Tower, Nehru Place<br />New Delhi, Delhi, India</p>
-              </div>
+          <div className="contact-info" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <div>
+              <h2>Ready to Upgrade Your Network?</h2>
+              <p>Contact our specialists today to discuss how we can secure and optimize your IT infrastructure.</p>
             </div>
-
-            <div className="info-item">
-              <i className="fas fa-clock"></i>
-              <div>
-                <h4>Business Hours</h4>
-                <p>Mon - Fri: 10:00 AM - 06:00 PM</p>
-              </div>
+            {/* Embedded Map */}
+            <div className="map-container reveal" style={{ width: '100%', flexGrow: 1, minHeight: '350px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.6030999903936!2d77.2519246!3d28.551648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3c530ea5175%3A0xcb06f52e2a144b20!2sModi%20Tower%2C%20Nehru%20Place%2C%20New%20Delhi%2C%20Delhi%20110019!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="JSR Netsol Location Map"
+              ></iframe>
             </div>
           </div>
 
@@ -351,12 +350,12 @@ export default function Home() {
             <form id="contactForm" className="contact-form" onSubmit={handleFormSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="John Doe" required />
+                <input type="text" id="name" name="name" placeholder="Ravi Kohli" required />
               </div>
 
               <div className="form-group">
                 <label htmlFor="email">Work Email</label>
-                <input type="email" id="email" name="email" placeholder="john@company.com" required />
+                <input type="email" id="email" name="email" placeholder="ravi@xyz.com" required />
               </div>
 
               <div className="form-group">
@@ -401,6 +400,22 @@ export default function Home() {
               <div><span className="logo-bold">JSR</span><span className="logo-light">Netsol</span></div>
             </a>
             <p>Empowering digital transformation with cutting-edge technology and unparalleled service.</p>
+            <div className="footer-contact-info" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <i className="fas fa-map-marker-alt" style={{ color: '#3b82f6', marginTop: '4px', fontSize: '1.1rem' }}></i>
+                <div>
+                  <h4 style={{ margin: '0 0 0.25rem', fontSize: '1rem', color: '#f8fafc' }}>Headquarters</h4>
+                  <p style={{ margin: 0, fontSize: '0.9rem', color: '#94a3b8', lineHeight: '1.5' }}>Modi Tower, Nehru Place<br />New Delhi, Delhi, India</p>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                <i className="fas fa-clock" style={{ color: '#3b82f6', marginTop: '4px', fontSize: '1.1rem' }}></i>
+                <div>
+                  <h4 style={{ margin: '0 0 0.25rem', fontSize: '1rem', color: '#f8fafc' }}>Business Hours</h4>
+                  <p style={{ margin: 0, fontSize: '0.9rem', color: '#94a3b8', lineHeight: '1.5' }}>Mon - Fri: 10:00 AM - 06:00 PM</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="footer-links">
             <h4>Company</h4>

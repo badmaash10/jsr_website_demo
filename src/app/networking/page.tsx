@@ -1,26 +1,46 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
+const services = [
+    {
+        icon: "fa-solid fa-pen-ruler",
+        title: "Network Architecture & Design",
+        body: "Before a single cable is run, we think deeply. Our engineers sit with your stakeholders to map out traffic patterns, redundancy requirements, and three-year growth projections — then produce a detailed blueprint that your team can own and evolve. We design for today's throughput and tomorrow's scale, using industry-standard tools to model every hop, VLAN, and failover path.",
+        tags: ["Campus LAN/WAN", "SD-WAN Ready", "Multi-site Topology", "Traffic Engineering"],
+        image: "Network_Architecture_& _Design.png"
+    },
+    {
+        icon: "fa-solid fa-plug-circle-check",
+        title: "Procurement & Integration",
+        body: "We are vendor-neutral by principle. Once a design is locked, we source the right hardware at competitive pricing — from access-layer switches to core routers — and handle every aspect of staging, configuration, and rack-and-stack deployment. Our structured rollout process minimises downtime and eliminates the config drift that plagues ad-hoc rollouts.",
+        tags: ["Cisco / Juniper / HP", "Zero-touch Provisioning", "Config Management", "24-hr Staging Lab"],
+        image: "Procurement_&_Integration.png"
+    },
+    {
+        icon: "fa-solid fa-shield-halved",
+        title: "AMC & Proactive Maintenance",
+        body: "Networks degrade silently. Firmware falls behind, spanning-tree topologies shift, and link utilisation creeps toward saturation — all before anyone files a ticket. Our Annual Maintenance Contracts include scheduled health audits, proactive firmware management, and a guaranteed SLA response window so you're never scrambling during a critical outage.",
+        tags: ["4-hr Hardware Replacement SLA", "Quarterly Health Reports", "Firmware Lifecycle Mgmt", "NOC Escalation Path"],
+        image: "AMC_&_Proactive_Maintenance.png"
+    },
+];
+
 export default function NetworkingPage() {
     const [navShadow, setNavShadow] = useState(false);
 
     useEffect(() => {
-        // Navbar shadow on scroll
-        const handleScroll = () => {
-            setNavShadow(window.scrollY > 50);
-        };
+        const handleScroll = () => setNavShadow(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <main className="bg-white min-h-screen text-slate-800">
-            <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`} id="navbar">
+            <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`}>
                 <div className="container nav-container">
                     <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <img src={`${basePath}/JSR_LOGO.png`} alt="JSR Logo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
@@ -34,65 +54,59 @@ export default function NetworkingPage() {
                 </div>
             </header>
 
-            {/* Hero Section for Networking */}
-            <section className="pt-40 pb-20 bg-slate-900 text-white relative overflow-hidden">
+            {/* Hero */}
+            <section className="pt-40 pb-24 bg-slate-900 text-white relative overflow-hidden">
                 <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700 via-slate-900 to-slate-900"></div>
                 <div className="container relative z-10 text-center">
-                    <span className="badge mb-6 inline-block">Enterprise Infrastructure</span>
-                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">Networking Solutions</h1>
+                    <span className="badge mb-6 inline-block">Enterprise Networking</span>
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
+                        Networks That Work.<br />
+                        <span className="text-blue-400">Every Single Time.</span>
+                    </h1>
                     <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                        Empowering your digital transformation with cutting-edge networking technology and expert design.
+                        From a 50-seat office to a multi-branch enterprise, we design, deploy, and maintain network infrastructure that quietly keeps your business running — no surprises, no unplanned downtime.
                     </p>
+                    <Link href="/#contact" className="btn btn-primary inline-block mt-10 px-8 py-4 text-lg">Get a Free Assessment</Link>
                 </div>
             </section>
 
-            {/* Services Content Section */}
-            <section className="py-24">
-                <div className="container">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-
-                        {/* Design Service */}
-                        <div className="bg-slate-50 border border-slate-200 p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
-                                <i className="fa-solid fa-pen-ruler"></i>
-                            </div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Network Design Services</h3>
-                            <p className="text-slate-600 leading-relaxed">
-                                Our design services form the foundation of a superior networking ecosystem. We begin with a thorough assessment of your current infrastructure, business objectives, and future requirements to architect a bespoke network blueprint. Our team of certified experts employs advanced modelling tools and methodologies to create designs that prioritize reliability, efficiency, and innovation.
-                            </p>
-                        </div>
-
-                        {/* Integration Service */}
-                        <div className="bg-slate-50 border border-slate-200 p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
-                                <i className="fa-solid fa-plug-circle-check"></i>
-                            </div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Network Integration Services</h3>
-                            <p className="text-slate-600 leading-relaxed mb-4">
-                                We provide a seamless supply chain for all your networking components, sourcing high-quality hardware and software from trusted providers without compromising on neutrality.
-                            </p>
-                            <p className="text-slate-600 leading-relaxed">
-                                We bring together disparate elements into a cohesive, fully operational network, ensuring smooth interoperability and minimal downtime during deployment. Our integration process is methodical, involving rigorous testing and configuration to align with your operational workflows.
-                            </p>
-                        </div>
-
-                        {/* Maintenance Service */}
-                        <div className="bg-slate-50 border border-slate-200 p-10 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
-                                <i className="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Maintenance</h3>
-                            <p className="text-slate-600 leading-relaxed">
-                                Ongoing maintenance is crucial for sustaining network health and preventing costly disruptions. Our maintenance offerings provide proactive monitoring, rapid response, and continuous improvement to keep your infrastructure running smoothly.
-                            </p>
-                        </div>
-
+            {/* Services */}
+            <section className="py-24 bg-slate-50">
+                <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="section-header mb-24 text-center">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">What We Deliver</h2>
+                        <p className="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">End-to-end networking ownership — from whiteboard to wire, and beyond.</p>
                     </div>
-
-                    <div className="mt-20 text-center">
-                        <Link href="/#contact" className="btn btn-primary px-8 py-4 text-lg">
-                            Discuss Your Network Project
-                        </Link>
+                    <div className="space-y-32">
+                        {services.map((s, idx) => (
+                            <div key={s.title} className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                                <div className={`w-full lg:w-1/2 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                                    <div className="relative group rounded-3xl overflow-hidden shadow-2xl ring-1 ring-slate-900/5 transition-transform duration-500 hover:scale-[1.02] bg-white">
+                                        <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                                        <img
+                                            src={`${basePath}/services_images/${s.image}`}
+                                            alt={s.title}
+                                            className="w-full h-auto aspect-[4/3] object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div className={`w-full lg:w-1/2 ${idx % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                                    <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-sm">
+                                        <i className={s.icon}></i>
+                                    </div>
+                                    <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">{s.title}</h3>
+                                    <p className="text-lg text-slate-600 leading-relaxed mb-8">{s.body}</p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {s.tags.map(tag => (
+                                            <span key={tag} className="text-sm bg-white text-slate-700 border border-slate-200 px-4 py-2 rounded-full font-semibold shadow-sm transition-colors hover:bg-slate-50 cursor-default">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-32 text-center">
+                        <Link href="/#contact" className="btn btn-primary px-10 py-5 text-xl font-semibold shadow-xl shadow-blue-500/20">Discuss Your Network</Link>
                     </div>
                 </div>
             </section>
@@ -110,14 +124,15 @@ export default function NetworkingPage() {
                     <div className="footer-links">
                         <h4 className="text-white font-semibold mb-4 text-lg">Solutions</h4>
                         <Link href="/networking" className="hover:text-blue-500 transition-colors block mb-2">Networking</Link>
-                        <a href="#" className="hover:text-blue-500 transition-colors block mb-2">Security</a>
-                        <a href="#" className="hover:text-blue-500 transition-colors block mb-2">Data Center</a>
+                        <Link href="/security" className="hover:text-blue-500 transition-colors block mb-2">Security</Link>
+                        <Link href="/compute-storage" className="hover:text-blue-500 transition-colors block mb-2">Compute & Storage</Link>
+                        <Link href="/data-center" className="hover:text-blue-500 transition-colors block mb-2">Data Center</Link>
                     </div>
                     <div className="footer-links">
                         <h4 className="text-white font-semibold mb-4 text-lg">Company</h4>
                         <a href="#" className="hover:text-blue-500 transition-colors block mb-2">About Us</a>
                         <Link href="/#contact" className="hover:text-blue-500 transition-colors block mb-2">Contact</Link>
-                        <a href="#" className="hover:text-blue-500 transition-colors block mb-2">Partners</a>
+                        <Link href="/#partners" className="hover:text-blue-500 transition-colors block mb-2">Partners</Link>
                     </div>
                 </div>
                 <div className="container">
