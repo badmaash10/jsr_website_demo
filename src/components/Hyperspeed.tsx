@@ -984,6 +984,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
                     fragmentShader: isRoad ? roadFragment : islandFragment,
                     vertexShader: roadVertex,
                     side: THREE.DoubleSide,
+                    transparent: true,
                     uniforms: Object.assign(uniforms, this.webgl.fogUniforms, options.distortion.uniforms)
                 });
 
@@ -1025,7 +1026,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         vec2 uv = vUv;
         vec3 color = vec3(uColor);
         #include <roadMarkings_fragment>
-        gl_FragColor = vec4(color, 1.);
+        gl_FragColor = vec4(color, 0.0);
         ${THREE.ShaderChunk['fog_fragment']}
       }
     `;

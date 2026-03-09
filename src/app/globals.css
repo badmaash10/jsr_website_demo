@@ -29,6 +29,12 @@ body {
   line-height: 1.6;
 }
 
+/* Force hide Next.js Dev Indicator/Logos */
+nextjs-portal,
+[data-nextjs-dialog-overlay] {
+  display: none !important;
+}
+
 /* Utilities */
 .container {
   max-width: 1200px;
@@ -105,26 +111,50 @@ body {
 /* Navbar */
 .navbar {
   position: fixed;
-  top: 0;
-  width: 100%;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1000px;
   z-index: 100;
-  background-color: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 1rem 0;
-  transition: var(--transition);
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* The GlassSurface inside the navbar inherits the pill shape */
+.navbar-glass {
+  border-radius: 50px !important;
+  background: rgba(15, 23, 42, 0.65) !important;
+  /* Force a smoky dark grey base layer so text is legible */
+  box-shadow: none !important;
+  /* Strip the heavy default outline/inset shadows from GlassSurface.css */
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  /* Simple clean border instead */
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .logo {
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--text-white);
+  padding: 0.2rem 0;
+}
+
+.logo-img-wrapper {
+  background-color: white;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo-bold {
@@ -140,19 +170,31 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .nav-links a {
-  color: var(--text-white);
+  color: #e2e8f0;
+  /* Slightly brighter text for the dark pill */
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
   transition: var(--transition);
 }
 
-.nav-links a:hover {
-  color: var(--color-accent);
+.nav-links .btn-outline {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  background-color: var(--color-accent);
+  border: none;
+  color: white;
+  border-radius: 50px;
+}
+
+.nav-links .btn-outline:hover {
+  background-color: var(--color-accent-hover);
+  color: white;
+  transform: translateY(-1px);
 }
 
 .mobile-menu-icon {
@@ -185,44 +227,111 @@ body {
 }
 
 .hero-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
-.badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background-color: rgba(37, 99, 235, 0.1);
-  color: var(--color-accent);
-  border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(37, 99, 235, 0.2);
-}
+/* --- Premium Hero Text Styles (Stitch-inspired) --- */
 
-.hero-text h1 {
-  font-size: 3.5rem;
-  line-height: 1.1;
+.hero-headline {
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.08;
   color: var(--text-white);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   font-weight: 800;
-  letter-spacing: -1px;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
-.hero-text p {
-  font-size: 1.125rem;
-  color: #94A3B8;
-  margin-bottom: 2.5rem;
-  max-width: 90%;
+.hero-headline-accent {
+  background: linear-gradient(135deg, #60a5fa, #06b6d4, #a78bfa);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+  filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.3));
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #F8FAFC;
+  margin: 0 auto 3rem auto;
+  max-width: 680px;
+  line-height: 1.8;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 2.2rem;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff !important;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(37, 99, 235, 0.15);
+  transition: all 0.3s ease;
+}
+
+.hero-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(37, 99, 235, 0.55), 0 0 60px rgba(37, 99, 235, 0.2);
+}
+
+.hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 2.2rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.hero-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.08);
 }
 
 .hero-actions {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 

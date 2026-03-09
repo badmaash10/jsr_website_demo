@@ -2,9 +2,7 @@
 import { useEffect, useState, useMemo } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
-import Hyperspeed from '@/components/Hyperspeed';
-
-import InteractiveGridImage from '@/components/InteractiveGridImage';
+import GlassSurface from '@/components/GlassSurface';
 
 // Using environment variable for basePath so it resolves correctly in GitHub Actions
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -79,43 +77,7 @@ export default function Home() {
     { name: 'Asus', logo: `${basePath}/asus.svg` },
   ];
 
-  // Memoize the Hyperspeed config so it doesn't recreate WebGL scenes on render
-  const hyperspeedOptions = useMemo(() => ({
-    onSpeedUp: () => { },
-    onSlowDown: () => { },
-    "distortion": "turbulentDistortion",
-    "length": 400,
-    "roadWidth": 10,
-    "islandWidth": 2,
-    "lanesPerRoad": 3,
-    "fov": 90,
-    "fovSpeedUp": 150,
-    "speedUp": 2,
-    "carLightsFade": 0.4,
-    "totalSideLightSticks": 20,
-    "lightPairsPerRoadWay": 40,
-    "shoulderLinesWidthPercentage": 0.05,
-    "brokenLinesWidthPercentage": 0.1,
-    "brokenLinesLengthPercentage": 0.5,
-    "lightStickWidth": [0.12, 0.5],
-    "lightStickHeight": [1.3, 1.7],
-    "movingAwaySpeed": [60, 80],
-    "movingCloserSpeed": [-120, -160],
-    "carLightsLength": [12, 80],
-    "carLightsRadius": [0.05, 0.14],
-    "carWidthPercentage": [0.3, 0.5],
-    "carShiftX": [-0.8, 0.8],
-    "carFloorSeparation": [0, 5],
-    "colors": {
-      "roadColor": 526344,
-      "islandColor": 657930,
-      "background": 0,
-      "shoulderLines": 1250072, "brokenLines": 1250072,
-      "leftCars": [14177983, 6770850, 12732332],
-      "rightCars": [242627, 941733, 3294549],
-      "sticks": 242627
-    }
-  }), []);
+  // hyperspeedOptions removed
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
@@ -139,48 +101,63 @@ export default function Home() {
 
   return (
     <main>
-      <header className={`navbar ${navShadow ? 'shadow-md shadow-black/10' : ''}`} id="navbar">
-        <div className="container nav-container">
-          <a href="#" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <img src={`${basePath}/JSR_LOGO.png`} alt="JSR Logo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
-            <div><span className="logo-bold">JSR</span><span className="logo-light">Netsol</span></div>
-          </a>
-          <nav className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#services">Offerings</a>
-            <a href="#partners">Partners</a>
-            <a href="#contact" className="btn btn-outline">Contact Us</a>
-          </nav>
-          <div className="mobile-menu-icon" onClick={() => alert("Mobile menu toggle functionality would open a side drawer here.")}>
-            <i className="fas fa-bars"></i>
+      <header className="navbar" id="navbar">
+        <GlassSurface
+          width="100%"
+          height="auto"
+          borderRadius={50}
+          brightness={30}
+          opacity={0.95}
+          blur={14}
+          displace={0.5}
+          backgroundOpacity={0.5}
+          saturation={1.2}
+          className="navbar-glass"
+        >
+          <div className="container nav-container">
+            <a href="#" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <img src={`${basePath}/JSR_LOGO.png`} alt="JSR Logo" style={{ height: '45px', width: 'auto', objectFit: 'contain' }} />
+              <div><span className="logo-bold">JSR</span><span className="logo-light">Netsol</span></div>
+            </a>
+            <nav className="nav-links">
+              <a href="#home">Home</a>
+              <a href="#services">Offerings</a>
+              <a href="#partners">Partners</a>
+              <a href="#contact" className="btn btn-outline">Contact Us</a>
+            </nav>
+            <div className="mobile-menu-icon" onClick={() => alert("Mobile menu toggle functionality would open a side drawer here.")}>
+              <i className="fas fa-bars"></i>
+            </div>
           </div>
-        </div>
+        </GlassSurface>
       </header>
 
       {/* Hero Section */}
-      <section className="hero" id="home">
-        <div className="hero-overlay" style={{ zIndex: 1, backgroundColor: 'rgba(15, 23, 42, 0.6)' }}></div>
+      <section
+        className="hero flex items-center justify-center text-center relative"
+        id="home"
+        style={{
+          minHeight: '100vh',
+          backgroundImage: `url(${basePath}/hero_homepage/Create_a_video_which_starts_the_transportatio.gif)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="hero-overlay absolute inset-0" style={{ zIndex: 1, backgroundColor: 'rgba(15, 23, 42, 0.6)' }}></div>
 
-        {/* 3D Hyperspeed Background Canvas */}
-        <Hyperspeed effectOptions={hyperspeedOptions} />
-
-        <div className="container hero-content" style={{ zIndex: 2 }}>
-          <div className="hero-text reveal">
-            <div className="badge">System Integration Experts</div>
-            <h1>End-to-End Networking Infrastructure</h1>
-            <p>We provide comprehensive solutions for your network challenges—delivering both leading OEM products and expert integration services to ensure seamless, secure operations.</p>
-            <div className="hero-actions">
-              <a href="#services" className="btn btn-primary">Discover Solutions</a>
-              <a href="#contact" className="btn btn-secondary">Get a Consultation</a>
-            </div>
-          </div>
-          <div className="hero-image-placeholder relative z-10 w-full h-[300px] md:h-[400px] lg:h-[500px]">
-            <div className="abstract-shape"></div>
-            <div style={{ position: 'relative', zIndex: 2, width: '100%', height: '100%', padding: '10px' }}>
-              <InteractiveGridImage
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800"
-                alt="Server Room Infrastructure Overview"
-              />
+        <div className="container hero-content relative flex flex-col items-center justify-center max-w-4xl mx-auto" style={{ zIndex: 2 }}>
+          <div className="hero-text reveal flex flex-col items-center">
+            <h1 className="hero-headline">
+              End-to-End<br />
+              <span className="hero-headline-accent">Networking</span> Infrastructure
+            </h1>
+            <p className="hero-subtitle">
+              We provide comprehensive solutions for your network challenges—delivering both leading OEM products and expert integration services to ensure seamless, secure operations.
+            </p>
+            <div className="hero-actions flex gap-5 justify-center">
+              <a href="#services" className="hero-cta-primary">Discover Solutions</a>
+              <a href="#contact" className="hero-cta-secondary">Get a Consultation</a>
             </div>
           </div>
         </div>
@@ -193,100 +170,46 @@ export default function Home() {
             <h2>Our Core Offerings</h2>
             <p>End-to-end technology solutions designed for performance, resilience, and security.</p>
           </div>
-          <div className="services-grid">
-
-            <Link href="/networking" className="service-card flip-card reveal block cursor-pointer">
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <div className="service-icon"><i className="fas fa-network-wired"></i></div>
-                  <h3>Networking</h3>
-                  <p className="front-subtext">Routing, Switching & Wireless</p>
-                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
-                </div>
-                <div className="flip-card-back">
-                  <h3>Networking Integration</h3>
-                  <p>End-to-end routing, switching, and wireless architectures solving complex connectivity problems.</p>
-                  <ul className="service-features">
-                    <li><i className="fas fa-check"></i> Enterprise Switching</li>
-                    <li><i className="fas fa-check"></i> Wireless Controllers</li>
-                    <li><i className="fas fa-check"></i> SD-WAN Integration</li>
-                  </ul>
-                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
-                    Learn more <i className="fas fa-arrow-right"></i>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-12">
+            <Link href="/networking" className="relative group block overflow-hidden rounded-xl border border-cyan-500/20 aspect-[3/4] hover:border-cyan-400 transition-all duration-300 reveal cursor-pointer shadow-lg shadow-black/50">
+              <Image src={`${basePath}/networking_bg.png`} alt="Networking Services" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="bg-slate-900/40 backdrop-blur-md border border-cyan-500/30 text-white font-bold text-center text-sm lg:text-base py-3 px-6 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.8)] transition-all duration-300">
+                  Networking Services
                 </div>
               </div>
             </Link>
 
-            <Link href="/security" className="service-card flip-card reveal reveal-delay-1 block cursor-pointer">
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <div className="service-icon"><i className="fas fa-shield-alt"></i></div>
-                  <h3>Security</h3>
-                  <p className="front-subtext">Firewalls & Cyber Defense</p>
-                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
-                </div>
-                <div className="flip-card-back">
-                  <h3>Security Services</h3>
-                  <p>Comprehensive protection across all network layers from leading standard OEM products.</p>
-                  <ul className="service-features">
-                    <li><i className="fas fa-check"></i> Next-Gen Firewalls</li>
-                    <li><i className="fas fa-check"></i> Layer 7 Protection</li>
-                    <li><i className="fas fa-check"></i> Endpoint Security</li>
-                  </ul>
-                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
-                    Learn more <i className="fas fa-arrow-right"></i>
-                  </div>
+            <Link href="/security" className="relative group block overflow-hidden rounded-xl border border-cyan-500/20 aspect-[3/4] hover:border-cyan-400 transition-all duration-300 reveal reveal-delay-1 cursor-pointer shadow-lg shadow-black/50">
+              <Image src={`${basePath}/home_service_images/security_services.png`} alt="Security Services" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="bg-slate-900/40 backdrop-blur-md border border-cyan-500/30 text-white font-bold text-center text-sm lg:text-base py-3 px-6 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.8)] transition-all duration-300">
+                  Security Services
                 </div>
               </div>
             </Link>
 
-            <Link href="/compute-storage" className="service-card flip-card reveal reveal-delay-2 block cursor-pointer">
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <div className="service-icon"><i className="fas fa-server"></i></div>
-                  <h3>Compute & Storage</h3>
-                  <p className="front-subtext">Servers & Data Management</p>
-                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
-                </div>
-                <div className="flip-card-back">
-                  <h3>Compute Integration</h3>
-                  <p>Robust server architectures and scalable storage deployments for your critical enterprise workloads.</p>
-                  <ul className="service-features">
-                    <li><i className="fas fa-check"></i> Blade Servers</li>
-                    <li><i className="fas fa-check"></i> SAN/NAS Solutions</li>
-                    <li><i className="fas fa-check"></i> Virtualization</li>
-                  </ul>
-                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
-                    Learn more <i className="fas fa-arrow-right"></i>
-                  </div>
+            <Link href="/compute-storage" className="relative group block overflow-hidden rounded-xl border border-cyan-500/20 aspect-[3/4] hover:border-cyan-400 transition-all duration-300 reveal reveal-delay-2 cursor-pointer shadow-lg shadow-black/50">
+              <Image src={`${basePath}/home_service_images/computerNstorage.png`} alt="Compute & Storage" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="bg-slate-900/40 backdrop-blur-md border border-cyan-500/30 text-white font-bold text-center text-sm lg:text-base py-3 px-6 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.8)] transition-all duration-300">
+                  Compute & Storage
                 </div>
               </div>
             </Link>
 
-            <Link href="/data-center" className="service-card flip-card reveal reveal-delay-3 block cursor-pointer">
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <div className="service-icon"><i className="fas fa-database"></i></div>
-                  <h3>Data Center</h3>
-                  <p className="front-subtext">Infrastructure & Hosting</p>
-                  <div className="mobile-tap-hint"><i className="fas fa-hand-pointer"></i> Tap to reveal</div>
-                </div>
-                <div className="flip-card-back">
-                  <h3>Data Center Build</h3>
-                  <p>Turnkey datacenter builds engineered for massive scale, elite security, and ultimate resiliency.</p>
-                  <ul className="service-features">
-                    <li><i className="fas fa-check"></i> Colocation Systems</li>
-                    <li><i className="fas fa-check"></i> Disaster Recovery</li>
-                    <li><i className="fas fa-check"></i> Cloud Migration</li>
-                  </ul>
-                  <div className="mt-4 text-blue-300 text-sm font-semibold flex items-center gap-2">
-                    Learn more <i className="fas fa-arrow-right"></i>
-                  </div>
+            <Link href="/data-center" className="relative group block overflow-hidden rounded-xl border border-cyan-500/20 aspect-[3/4] hover:border-cyan-400 transition-all duration-300 reveal reveal-delay-3 cursor-pointer shadow-lg shadow-black/50">
+              <Image src={`${basePath}/home_service_images/data_center_services.png`} alt="Data Center Services" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-slate-900/50 group-hover:bg-slate-900/20 transition-colors duration-500"></div>
+              <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="bg-slate-900/40 backdrop-blur-md border border-cyan-500/30 text-white font-bold text-center text-sm lg:text-base py-3 px-6 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)] group-hover:shadow-[0_0_25px_rgba(6,182,212,0.8)] transition-all duration-300">
+                  Data Center Services
                 </div>
               </div>
             </Link>
-
           </div>
         </div>
       </section>
